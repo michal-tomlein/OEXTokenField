@@ -8,23 +8,22 @@
 
 #import <Cocoa/Cocoa.h>
 
-@protocol OEXTokenTextStorageDelegate;
+@class OEXTokenTextStorage;
+
+@protocol OEXTokenTextStorageDelegate <NSTextStorageDelegate>
+
+@optional
+
+- (void)tokenTextStorage:(OEXTokenTextStorage *)textStorage updateTokenAttachment:(NSTextAttachment *)attachment forRange:(NSRange)range;
+
+@end
 
 /*- OEXTokenTextStorage is used internally by OEXTokenFieldCell to perform attachment cell replacement as the tokens are inserted in the editor text view.
  */
 @interface OEXTokenTextStorage : NSTextStorage
 
-@property(nonatomic, weak) id <OEXTokenTextStorageDelegate> delegate;
+@property (weak) id <OEXTokenTextStorageDelegate> delegate;
 
-- (id)initWithAttributedString:(NSAttributedString *)attrStr;
-
-@end
-
-#pragma mark -
-
-@protocol OEXTokenTextStorageDelegate <NSObject>
-
-@optional
-- (void)tokenTextStorage:(OEXTokenTextStorage *)textStorage updateTokenAttachment:(NSTextAttachment *)attachment forRange:(NSRange)range;
+- (id)initWithAttributedString:(NSAttributedString *)attrStr NS_DESIGNATED_INITIALIZER;
 
 @end

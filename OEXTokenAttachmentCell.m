@@ -11,6 +11,12 @@
 static CGFloat const kOEXTokenAttachmentTitleMargin = 11;
 static CGFloat const kOEXTokenAttachmentTokenMargin = 3;
 
+@interface OEXTokenAttachmentCell ()
+
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView characterIndex:(NSUInteger)charIndex layoutManager:(NSLayoutManager *)layoutManager;
+
+@end
+
 @implementation OEXTokenAttachmentCell
 {
     // Theses ivars are set at the begining of the draw
